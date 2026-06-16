@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SYS_OPERATOR // HUSAM</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -34,9 +34,14 @@
                 linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
                 linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
             background-size: 100% 4px, 6px 100%;
+            transition: all 0.3s ease;
         }
 
-        /* Scanline Overlay Effect */
+        /* تفعيل الخط العربي عندما يكون الاتجاه من اليمين لليسار */
+        body[dir="rtl"] {
+            font-family: 'Changa', sans-serif;
+        }
+
         body::before {
             content: " ";
             display: block;
@@ -54,7 +59,6 @@
             padding: 40px 20px;
         }
 
-        /* Header / Terminal Status */
         header {
             display: flex;
             justify-content: space-between;
@@ -70,10 +74,26 @@
             font-size: 0.9rem;
         }
 
-        /* Pure CSS Glitch Animation */
-        .glitch-wrapper {
-            margin-bottom: 10px;
+        .lang-btn {
+            background: transparent;
+            color: var(--neon-magenta);
+            border: 1px solid var(--neon-magenta);
+            padding: 5px 15px;
+            font-family: inherit;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 100; /* لضمان قابليته للضغط فوق تأثيرات الشاشة */
         }
+        
+        .lang-btn:hover {
+            background: var(--neon-magenta);
+            color: var(--bg-color);
+            box-shadow: 0 0 10px var(--neon-magenta);
+        }
+
+        .glitch-wrapper { margin-bottom: 10px; }
 
         .glitch {
             font-size: 3.5rem;
@@ -115,47 +135,37 @@
             margin-bottom: 40px;
         }
 
-        /* Cyberpunk Panel Design */
         .panel {
             background: var(--cyber-panel);
             border: 1px solid var(--neon-cyan);
             padding: 30px;
             margin-bottom: 40px;
             position: relative;
+            /* توجيه الزوايا لتعمل مع كل الاتجاهات */
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
         }
 
+        body[dir="rtl"] .panel {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+        }
+
         .panel::before {
-            content: "CORE_SYSTEM_STATUS";
+            content: attr(data-label);
             position: absolute;
-            top: -10px; left: 20px;
+            top: -10px; inset-inline-start: 20px;
             background: var(--bg-color);
             padding: 0 10px;
             font-size: 0.8rem;
             color: var(--neon-magenta);
         }
 
-        .profile-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
+        .profile-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        @media(min-width: 768px) { .profile-grid { grid-template-columns: 1fr 2fr; } }
 
-        @media(min-width: 768px) {
-            .profile-grid { grid-template-columns: 1fr 2fr; }
-        }
+        .stats-list p { margin-bottom: 10px; font-size: 1.1rem; }
+        .stats-list span { color: var(--neon-cyan); }
 
-        .stats-list p {
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .stats-list span {
-            color: var(--neon-cyan);
-        }
-
-        /* Projects Grid (No Tables) */
         .matrix-title {
             color: var(--neon-magenta);
             text-shadow: 0 0 5px var(--neon-magenta);
@@ -164,32 +174,27 @@
             letter-spacing: 2px;
         }
 
-        .project-matrix {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-
-        @media(min-width: 768px) {
-            .project-matrix { grid-template-columns: repeat(2, 1fr); }
-        }
+        .project-matrix { display: grid; grid-template-columns: 1fr; gap: 25px; }
+        @media(min-width: 768px) { .project-matrix { grid-template-columns: repeat(2, 1fr); } }
 
         .project-card {
             background: #06060f;
-            border-left: 4px solid var(--neon-cyan);
+            /* استخدام الخصائص المنطقية للتوافق مع العربي والإنجليزي */
+            border-inline-start: 4px solid var(--neon-cyan);
             border-top: 1px solid rgba(0, 240, 255, 0.2);
             border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-            border-right: 1px solid rgba(0, 240, 255, 0.2);
+            border-inline-end: 1px solid rgba(0, 240, 255, 0.2);
             padding: 25px;
             transition: all 0.3s ease;
             position: relative;
             cursor: pointer;
+            z-index: 100;
         }
 
         .project-card:hover {
-            border-left-color: var(--neon-magenta);
+            border-inline-start-color: var(--neon-magenta);
             box-shadow: 0 0 15px rgba(255, 0, 85, 0.2);
-            transform: translateX(5px);
+            transform: translateY(-5px);
         }
 
         .project-card h3 {
@@ -200,16 +205,8 @@
             justify-content: space-between;
         }
 
-        .project-card:hover h3 {
-            color: var(--neon-magenta);
-        }
-
-        .project-card p {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: #a0a0b0;
-            margin-bottom: 15px;
-        }
+        .project-card:hover h3 { color: var(--neon-magenta); }
+        .project-card p { font-size: 0.95rem; line-height: 1.6; color: #a0a0b0; margin-bottom: 15px; }
 
         .tech-tags span {
             display: inline-block;
@@ -217,25 +214,25 @@
             color: var(--neon-cyan);
             padding: 2px 8px;
             font-size: 0.8rem;
-            margin-right: 5px;
+            margin-inline-end: 5px;
             margin-bottom: 5px;
             border: 1px solid rgba(0, 240, 255, 0.2);
         }
 
-        /* Interactive Footer Link */
         .cyber-btn {
             display: inline-block;
             background: transparent;
             color: var(--neon-cyan);
             border: 1px solid var(--neon-cyan);
             padding: 10px 20px;
-            font-family: 'Share Tech Mono', monospace;
+            font-family: inherit;
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             margin-top: 20px;
             position: relative;
+            z-index: 100;
         }
 
         .cyber-btn:hover {
@@ -245,31 +242,20 @@
             font-weight: bold;
         }
 
-        /* Animations Keyframes */
         @keyframes glitch-anim {
             0% { clip: rect(31px, 9999px, 94px, 0); }
-            10% { clip: rect(112px, 9999px, 76px, 0); }
             20% { clip: rect(85px, 9999px, 5px, 0); }
-            30% { clip: rect(27px, 9999px, 115px, 0); }
             40% { clip: rect(73px, 9999px, 29px, 0); }
-            50% { clip: rect(118px, 9999px, 142px, 0); }
             60% { clip: rect(18px, 9999px, 93px, 0); }
-            70% { clip: rect(43px, 9999px, 64px, 0); }
             80% { clip: rect(125px, 9999px, 81px, 0); }
-            90% { clip: rect(2px, 9999px, 137px, 0); }
             100% { clip: rect(54px, 9999px, 41px, 0); }
         }
-
         @keyframes glitch-anim2 {
             0% { clip: rect(76px, 9999px, 116px, 0); }
-            11% { clip: rect(43px, 9999px, 6px, 0); }
-            22% { clip: rect(122px, 9999px, 148px, 0); }
-            33% { clip: rect(9px, 9999px, 84px, 0); }
-            44% { clip: rect(81px, 9999px, 110px, 0); }
-            55% { clip: rect(3px, 9999px, 92px, 0); }
-            66% { clip: rect(140px, 9999px, 27px, 0); }
-            77% { clip: rect(58px, 9999px, 134px, 0); }
-            88% { clip: rect(102px, 9999px, 51px, 0); }
+            20% { clip: rect(122px, 9999px, 148px, 0); }
+            40% { clip: rect(81px, 9999px, 110px, 0); }
+            60% { clip: rect(140px, 9999px, 27px, 0); }
+            80% { clip: rect(102px, 9999px, 51px, 0); }
             100% { clip: rect(17px, 9999px, 119px, 0); }
         }
     </style>
@@ -278,86 +264,154 @@
 
     <div class="container">
         <header>
-            <div class="logo">://RASASS_MAIN_FRAME</div>
-            <div class="status-node">● NODE_ONLINE // SECURE_SSL</div>
+            <div class="logo" data-i18n="logo">://RASASS_MAIN_FRAME</div>
+            <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">[ AR ]</button>
+            <div class="status-node" data-i18n="status">● NODE_ONLINE // SECURE_SSL</div>
         </header>
 
         <div class="glitch-wrapper">
-            <h1 class="glitch" data-text="HUSAM">HUSAM</h1>
+            <h1 class="glitch" id="mainName" data-text="HUSAM" data-i18n="name">HUSAM</h1>
         </div>
-        <div class="subtitle">_FULL-STACK_ENGINEER // _DEVOPS_OPERATOR</div>
+        <div class="subtitle" data-i18n="subtitle">_FULL-STACK_ENGINEER // _DEVOPS_OPERATOR</div>
 
-        <div class="panel">
+        <div class="panel" id="corePanel" data-label="CORE_SYSTEM_STATUS">
             <div class="profile-grid">
                 <div class="stats-list">
-                    <p>⚡ CODENAME: <span>0s-a</span></p>
-                    <p>📍 LOCATION: <span>SANAA_NODE_YE</span></p>
-                    <p>🛠️ CORE_ENV: <span>LINUX_DEBIAN</span></p>
-                    <p>🎯 ARCH: <span>ENTERPRISE_GRADE</span></p>
+                    <p data-i18n="codename">⚡ CODENAME: <span>0s-a</span></p>
+                    <p data-i18n="location">📍 LOCATION: <span>SANAA_NODE_YE</span></p>
+                    <p data-i18n="env">🛠️ CORE_ENV: <span>LINUX_DEBIAN</span></p>
+                    <p data-i18n="arch">🎯 ARCH: <span>ENTERPRISE_GRADE</span></p>
                 </div>
                 <div>
-                    <p style="line-height: 1.6; color: #b0b0c5;">
+                    <p style="line-height: 1.8; color: #b0b0c5;" data-i18n="bio">
                         Executing full-stack architecture definitions. Focused on orchestrating automated workflows, designing resilient databases, and self-hosting highly scalable software infrastructures. Bridging the gap between dynamic reactive frontends and multi-staged backend pipelines.
                     </p>
                 </div>
             </div>
         </div>
 
-        <h2 class="matrix-title">// PROJECT_DEPLOYMENTS_MATRIX</h2>
+        <h2 class="matrix-title" data-i18n="matrix_title">// PROJECT_DEPLOYMENTS_MATRIX</h2>
         
         <div class="project-matrix">
-            
             <div class="project-card" onclick="window.location.href='/nawaat'">
-                <h3>01 // NAWAAT_CRM <span style="font-size: 0.8rem; color: var(--neon-magenta);">[ACTIVE]</span></h3>
-                <p>AI-driven CRM environment featuring comprehensive workflow automation nodes, reactive asset pipelines, and automated response structures.</p>
+                <h3><span data-i18n="p1_title">01 // NAWAAT_CRM</span> <span style="font-size: 0.8rem; color: var(--neon-magenta);" data-i18n="active">[ACTIVE]</span></h3>
+                <p data-i18n="p1_desc">AI-driven CRM environment featuring comprehensive workflow automation nodes, reactive asset pipelines, and automated response structures.</p>
                 <div class="tech-tags">
-                    <span>Next.js</span>
-                    <span>Node.js</span>
-                    <span>n8n</span>
-                    <span>PostgreSQL</span>
-                    <span>Docker</span>
+                    <span>Next.js</span><span>Node.js</span><span>n8n</span><span>PostgreSQL</span><span>Docker</span>
                 </div>
             </div>
 
             <div class="project-card" onclick="window.location.href='/debt-manager'">
-                <h3>02 // DEBT_MANAGER <span style="font-size: 0.8rem; color: var(--neon-magenta);">[ACTIVE]</span></h3>
-                <p>A digitized credit ledger interface optimized for local merchant balance keeping, deprecating paper-bound transaction registries.</p>
+                <h3><span data-i18n="p2_title">02 // DEBT_MANAGER</span> <span style="font-size: 0.8rem; color: var(--neon-magenta);" data-i18n="active">[ACTIVE]</span></h3>
+                <p data-i18n="p2_desc">A digitized credit ledger interface optimized for local merchant balance keeping, deprecating paper-bound transaction registries.</p>
                 <div class="tech-tags">
-                    <span>Flutter</span>
-                    <span>Dart</span>
-                    <span>SQLite</span>
-                    <span>State Management</span>
+                    <span>Flutter</span><span>Dart</span><span>SQLite</span>
                 </div>
             </div>
 
             <div class="project-card" onclick="window.location.href='/world-cup-dashboard'">
-                <h3>03 // EDGE_PORTAL <span style="font-size: 0.8rem; color: var(--neon-cyan);">[STABLE]</span></h3>
-                <p>Real-time edge-rendered match metrics dashboard integrated directly into isolated captive hotspot infrastructure.</p>
+                <h3><span data-i18n="p3_title">03 // EDGE_PORTAL</span> <span style="font-size: 0.8rem; color: var(--neon-cyan);" data-i18n="stable">[STABLE]</span></h3>
+                <p data-i18n="p3_desc">Real-time edge-rendered match metrics dashboard integrated directly into isolated captive hotspot infrastructure.</p>
                 <div class="tech-tags">
-                    <span>Cloudflare Workers</span>
-                    <span>HTML5</span>
-                    <span>CSS3</span>
-                    <span>MikroTik API</span>
+                    <span>Cloudflare Workers</span><span>HTML5</span><span>CSS3</span><span>MikroTik API</span>
                 </div>
             </div>
 
             <div class="project-card" onclick="window.location.href='/yemeni-legislation'">
-                <h3>04 // LEGAL_SEARCH <span style="font-size: 0.8rem; color: var(--neon-cyan);">[STABLE]</span></h3>
-                <p>Full-text localized query indexing engine built for searching structured regional legislative data documentation.</p>
+                <h3><span data-i18n="p4_title">04 // LEGAL_SEARCH</span> <span style="font-size: 0.8rem; color: var(--neon-cyan);" data-i18n="stable">[STABLE]</span></h3>
+                <p data-i18n="p4_desc">Full-text localized query indexing engine built for searching structured regional legislative data documentation.</p>
                 <div class="tech-tags">
-                    <span>Flutter</span>
-                    <span>FTS5</span>
-                    <span>SQL Normalization</span>
+                    <span>Flutter</span><span>FTS5</span><span>SQL Normalization</span>
                 </div>
             </div>
-
         </div>
 
         <div style="margin-top: 50px; text-align: center;">
-            <a href="https://github.com/0s-a" target="_blank" class="cyber-btn">INITIALIZE_GITHUB_HANDSHAKE_</a>
+            <a href="https://github.com/0s-a" target="_blank" class="cyber-btn" data-i18n="github_btn">INITIALIZE_GITHUB_HANDSHAKE_</a>
         </div>
-
     </div>
+
+    <script>
+        const translations = {
+            en: {
+                logo: "://RASASS_MAIN_FRAME",
+                status: "● NODE_ONLINE // SECURE_SSL",
+                name: "HUSAM",
+                subtitle: "_FULL-STACK_ENGINEER // _DEVOPS_OPERATOR",
+                panel_label: "CORE_SYSTEM_STATUS",
+                codename: "⚡ CODENAME: <span>0s-a</span>",
+                location: "📍 LOCATION: <span>SANAA_NODE_YE</span>",
+                env: "🛠️ CORE_ENV: <span>LINUX_DEBIAN</span>",
+                arch: "🎯 ARCH: <span>ENTERPRISE_GRADE</span>",
+                bio: "Executing full-stack architecture definitions. Focused on orchestrating automated workflows, designing resilient databases, and self-hosting highly scalable software infrastructures. Bridging the gap between dynamic reactive frontends and multi-staged backend pipelines.",
+                matrix_title: "// PROJECT_DEPLOYMENTS_MATRIX",
+                p1_title: "01 // NAWAAT_CRM",
+                p2_title: "02 // DEBT_MANAGER",
+                p3_title: "03 // EDGE_PORTAL",
+                p4_title: "04 // LEGAL_SEARCH",
+                active: "[ACTIVE]",
+                stable: "[STABLE]",
+                p1_desc: "AI-driven CRM environment featuring comprehensive workflow automation nodes, reactive asset pipelines, and automated response structures.",
+                p2_desc: "A digitized credit ledger interface optimized for local merchant balance keeping, deprecating paper-bound transaction registries.",
+                p3_desc: "Real-time edge-rendered match metrics dashboard integrated directly into isolated captive hotspot infrastructure.",
+                p4_desc: "Full-text localized query indexing engine built for searching structured regional legislative data documentation.",
+                github_btn: "INITIALIZE_GITHUB_HANDSHAKE_"
+            },
+            ar: {
+                logo: "://إطار_رصاص_الرئيسي",
+                status: "● العقدة_متصلة // اتصال_آمن",
+                name: "حسام",
+                subtitle: "_مهندس_نظم_متكاملة // _مشغل_عمليات_التطوير",
+                panel_label: "حالة_النظام_الأساسي",
+                codename: "⚡ الاسم_الرمزي: <span dir='ltr'>0s-a</span>",
+                location: "📍 الموقع: <span>عقدة_صنعاء_اليمن</span>",
+                env: "🛠️ بيئة_النواة: <span>لينكس_ديبيان</span>",
+                arch: "🎯 المعمارية: <span>مستوى_المؤسسات</span>",
+                bio: "تنفيذ معماريات النظم المتكاملة. التركيز على أتمتة مسارات العمل، تصميم قواعد بيانات مرنة، والاستضافة الذاتية للبنى التحتية القابلة للتوسع. سد الفجوة بين الواجهات التفاعلية ومسارات المعالجة الخلفية متعددة المراحل.",
+                matrix_title: "// مصفوفة_المشاريع_المنشورة",
+                p1_title: "01 // نواة_CRM",
+                p2_title: "02 // إدارة_الديون",
+                p3_title: "03 // بوابة_الحافة",
+                p4_title: "04 // البحث_القانوني",
+                active: "[نشط]",
+                stable: "[مستقر]",
+                p1_desc: "بيئة إدارة علاقات عملاء مدعومة بالذكاء الاصطناعي، تتميز بأتمتة سير العمل والاستجابة التلقائية للعملاء.",
+                p2_desc: "واجهة رقمية لإدارة السجلات المالية مصممة لتجار التجزئة، تستبدل السجلات الورقية التقليدية.",
+                p3_desc: "لوحة تحكم لحظية لعرض إحصائيات المباريات مدمجة مباشرة مع أنظمة شبكات (Hotspot) المعزولة.",
+                p4_desc: "محرك بحث مفهرس للنصوص الكاملة مصمم للبحث السريع داخل وثائق التشريعات الإقليمية المنظمة.",
+                github_btn: "بدء_مصافحة_جيت_هاب_"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            
+            // تغيير اتجاه الصفحة
+            document.documentElement.dir = currentLang === 'en' ? 'ltr' : 'rtl';
+            document.documentElement.lang = currentLang;
+            
+            // تغيير زر التبديل
+            document.getElementById('langBtn').innerText = currentLang === 'en' ? '[ AR ]' : '[ EN ]';
+
+            // تحديث النصوص
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if(translations[currentLang][key]) {
+                    element.innerHTML = translations[currentLang][key];
+                }
+            });
+
+            // تحديث تأثير الغليتش للاسم
+            const nameEl = document.getElementById('mainName');
+            nameEl.setAttribute('data-text', translations[currentLang].name);
+
+            // تحديث عنوان اللوحة
+            const panelEl = document.getElementById('corePanel');
+            panelEl.setAttribute('data-label', translations[currentLang].panel_label);
+        }
+    </script>
 
 </body>
 </html>
