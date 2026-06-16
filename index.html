@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYS_OPERATOR // HUSAM</title>
+    <title>SYS_OPERATOR // HUSAM AL-RSASS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -37,10 +37,7 @@
             transition: all 0.3s ease;
         }
 
-        /* تفعيل الخط العربي عندما يكون الاتجاه من اليمين لليسار */
-        body[dir="rtl"] {
-            font-family: 'Changa', sans-serif;
-        }
+        body[dir="rtl"] { font-family: 'Changa', sans-serif; }
 
         body::before {
             content: " ";
@@ -68,196 +65,89 @@
             margin-bottom: 60px;
         }
 
-        .status-node {
-            color: var(--neon-green);
-            text-shadow: 0 0 5px var(--neon-green);
-            font-size: 0.9rem;
-        }
+        .status-node { color: var(--neon-green); text-shadow: 0 0 5px var(--neon-green); font-size: 0.9rem; }
 
         .lang-btn {
-            background: transparent;
-            color: var(--neon-magenta);
-            border: 1px solid var(--neon-magenta);
-            padding: 5px 15px;
-            font-family: inherit;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            position: relative;
-            z-index: 100; /* لضمان قابليته للضغط فوق تأثيرات الشاشة */
+            background: transparent; color: var(--neon-magenta); border: 1px solid var(--neon-magenta);
+            padding: 5px 15px; font-family: inherit; cursor: pointer; font-weight: bold; transition: all 0.3s;
+            position: relative; z-index: 100;
         }
         
-        .lang-btn:hover {
-            background: var(--neon-magenta);
-            color: var(--bg-color);
-            box-shadow: 0 0 10px var(--neon-magenta);
-        }
+        .lang-btn:hover { background: var(--neon-magenta); color: var(--bg-color); box-shadow: 0 0 10px var(--neon-magenta); }
 
         .glitch-wrapper { margin-bottom: 10px; }
 
         .glitch {
-            font-size: 3.5rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            position: relative;
-            color: var(--text-color);
-            letter-spacing: 3px;
-            text-shadow: 0.05em 0 0 var(--neon-magenta), -0.025em -0.05em 0 var(--neon-cyan);
+            font-size: 3.5rem; font-weight: bold; text-transform: uppercase; position: relative; color: var(--text-color);
+            letter-spacing: 3px; text-shadow: 0.05em 0 0 var(--neon-magenta), -0.025em -0.05em 0 var(--neon-cyan);
             animation: glitch-anim 1s infinite;
         }
 
         .glitch::before, .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-color);
+            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color);
         }
 
-        .glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 var(--neon-cyan);
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim2 5s infinite linear alternate-reverse;
-        }
+        .glitch::before { left: 2px; text-shadow: -2px 0 var(--neon-cyan); clip: rect(44px, 450px, 56px, 0); animation: glitch-anim2 5s infinite linear alternate-reverse; }
+        .glitch::after { left: -2px; text-shadow: -2px 0 var(--neon-magenta); clip: rect(85px, 450px, 140px, 0); animation: glitch-anim 2.5s infinite linear alternate-reverse; }
 
-        .glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 var(--neon-magenta);
-            clip: rect(85px, 450px, 140px, 0);
-            animation: glitch-anim 2.5s infinite linear alternate-reverse;
-        }
-
-        .subtitle {
-            color: var(--neon-cyan);
-            text-shadow: 0 0 5px var(--neon-cyan);
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            margin-bottom: 40px;
-        }
+        .subtitle { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 40px; }
 
         .panel {
-            background: var(--cyber-panel);
-            border: 1px solid var(--neon-cyan);
-            padding: 30px;
-            margin-bottom: 40px;
-            position: relative;
-            /* توجيه الزوايا لتعمل مع كل الاتجاهات */
+            background: var(--cyber-panel); border: 1px solid var(--neon-cyan); padding: 30px; margin-bottom: 40px; position: relative;
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
         }
 
-        body[dir="rtl"] .panel {
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-        }
+        body[dir="rtl"] .panel { clip-path: polygon(0 0, 100% 0, 100% 100%, 20px 100%, 0 calc(100% - 20px)); }
 
         .panel::before {
-            content: attr(data-label);
-            position: absolute;
-            top: -10px; inset-inline-start: 20px;
-            background: var(--bg-color);
-            padding: 0 10px;
-            font-size: 0.8rem;
-            color: var(--neon-magenta);
+            content: attr(data-label); position: absolute; top: -10px; inset-inline-start: 20px; background: var(--bg-color);
+            padding: 0 10px; font-size: 0.8rem; color: var(--neon-magenta);
         }
 
-        .profile-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .profile-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
         @media(min-width: 768px) { .profile-grid { grid-template-columns: 1fr 2fr; } }
 
-        .stats-list p { margin-bottom: 10px; font-size: 1.1rem; }
+        .stats-list p { margin-bottom: 12px; font-size: 1.1rem; }
         .stats-list span { color: var(--neon-cyan); }
 
-        .matrix-title {
-            color: var(--neon-magenta);
-            text-shadow: 0 0 5px var(--neon-magenta);
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
+        .tech-tags { margin-top: 15px; }
+        .tech-tags span {
+            display: inline-block; background: rgba(0, 240, 255, 0.1); color: var(--neon-cyan); padding: 4px 10px;
+            font-size: 0.85rem; margin-inline-end: 5px; margin-bottom: 8px; border: 1px solid rgba(0, 240, 255, 0.2);
         }
+        
+        .learning-tags span { border-color: var(--neon-magenta); color: var(--neon-magenta); background: rgba(255, 0, 85, 0.1); }
+
+        .matrix-title { color: var(--neon-magenta); text-shadow: 0 0 5px var(--neon-magenta); font-size: 1.5rem; margin-bottom: 20px; letter-spacing: 2px; margin-top: 50px;}
 
         .project-matrix { display: grid; grid-template-columns: 1fr; gap: 25px; }
         @media(min-width: 768px) { .project-matrix { grid-template-columns: repeat(2, 1fr); } }
 
         .project-card {
-            background: #06060f;
-            /* استخدام الخصائص المنطقية للتوافق مع العربي والإنجليزي */
-            border-inline-start: 4px solid var(--neon-cyan);
-            border-top: 1px solid rgba(0, 240, 255, 0.2);
-            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-            border-inline-end: 1px solid rgba(0, 240, 255, 0.2);
-            padding: 25px;
-            transition: all 0.3s ease;
-            position: relative;
-            cursor: pointer;
-            z-index: 100;
+            background: #06060f; border-inline-start: 4px solid var(--neon-cyan); border-top: 1px solid rgba(0, 240, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2); border-inline-end: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 25px; transition: all 0.3s ease; position: relative; cursor: pointer; z-index: 100;
         }
 
-        .project-card:hover {
-            border-inline-start-color: var(--neon-magenta);
-            box-shadow: 0 0 15px rgba(255, 0, 85, 0.2);
-            transform: translateY(-5px);
-        }
+        .project-card:hover { border-inline-start-color: var(--neon-magenta); box-shadow: 0 0 15px rgba(255, 0, 85, 0.2); transform: translateY(-5px); }
 
-        .project-card h3 {
-            color: var(--neon-cyan);
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-            display: flex;
-            justify-content: space-between;
-        }
-
+        .project-card h3 { color: var(--neon-cyan); margin-bottom: 10px; font-size: 1.3rem; display: flex; justify-content: space-between; }
         .project-card:hover h3 { color: var(--neon-magenta); }
         .project-card p { font-size: 0.95rem; line-height: 1.6; color: #a0a0b0; margin-bottom: 15px; }
 
-        .tech-tags span {
-            display: inline-block;
-            background: rgba(0, 240, 255, 0.1);
-            color: var(--neon-cyan);
-            padding: 2px 8px;
-            font-size: 0.8rem;
-            margin-inline-end: 5px;
-            margin-bottom: 5px;
-            border: 1px solid rgba(0, 240, 255, 0.2);
-        }
-
         .cyber-btn {
-            display: inline-block;
-            background: transparent;
-            color: var(--neon-cyan);
-            border: 1px solid var(--neon-cyan);
-            padding: 10px 20px;
-            font-family: inherit;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            margin-top: 20px;
-            position: relative;
-            z-index: 100;
+            display: inline-block; background: transparent; color: var(--neon-cyan); border: 1px solid var(--neon-cyan);
+            padding: 10px 20px; font-family: inherit; font-size: 1rem; cursor: pointer; transition: all 0.3s ease;
+            text-decoration: none; position: relative; z-index: 100; margin: 0 10px;
         }
 
-        .cyber-btn:hover {
-            background: var(--neon-cyan);
-            color: var(--bg-color);
-            box-shadow: 0 0 15px var(--neon-cyan);
-            font-weight: bold;
-        }
+        .cyber-btn:hover { background: var(--neon-cyan); color: var(--bg-color); box-shadow: 0 0 15px var(--neon-cyan); font-weight: bold; }
 
-        @keyframes glitch-anim {
-            0% { clip: rect(31px, 9999px, 94px, 0); }
-            20% { clip: rect(85px, 9999px, 5px, 0); }
-            40% { clip: rect(73px, 9999px, 29px, 0); }
-            60% { clip: rect(18px, 9999px, 93px, 0); }
-            80% { clip: rect(125px, 9999px, 81px, 0); }
-            100% { clip: rect(54px, 9999px, 41px, 0); }
-        }
-        @keyframes glitch-anim2 {
-            0% { clip: rect(76px, 9999px, 116px, 0); }
-            20% { clip: rect(122px, 9999px, 148px, 0); }
-            40% { clip: rect(81px, 9999px, 110px, 0); }
-            60% { clip: rect(140px, 9999px, 27px, 0); }
-            80% { clip: rect(102px, 9999px, 51px, 0); }
-            100% { clip: rect(17px, 9999px, 119px, 0); }
-        }
+        .action-bar { margin-top: 60px; text-align: center; display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
+
+        @keyframes glitch-anim { 0% { clip: rect(31px, 9999px, 94px, 0); } 20% { clip: rect(85px, 9999px, 5px, 0); } 40% { clip: rect(73px, 9999px, 29px, 0); } 60% { clip: rect(18px, 9999px, 93px, 0); } 80% { clip: rect(125px, 9999px, 81px, 0); } 100% { clip: rect(54px, 9999px, 41px, 0); } }
+        @keyframes glitch-anim2 { 0% { clip: rect(76px, 9999px, 116px, 0); } 20% { clip: rect(122px, 9999px, 148px, 0); } 40% { clip: rect(81px, 9999px, 110px, 0); } 60% { clip: rect(140px, 9999px, 27px, 0); } 80% { clip: rect(102px, 9999px, 51px, 0); } 100% { clip: rect(17px, 9999px, 119px, 0); } }
     </style>
 </head>
 <body>
@@ -270,22 +160,39 @@
         </header>
 
         <div class="glitch-wrapper">
-            <h1 class="glitch" id="mainName" data-text="HUSAM" data-i18n="name">HUSAM</h1>
+            <h1 class="glitch" id="mainName" data-text="HUSAM AL-RSASS" data-i18n="name">HUSAM AL-RSASS</h1>
         </div>
-        <div class="subtitle" data-i18n="subtitle">_FULL-STACK_ENGINEER // _DEVOPS_OPERATOR</div>
+        <div class="subtitle" data-i18n="subtitle">_CS_STUDENT // _SOFTWARE_BUILDER</div>
 
-        <div class="panel" id="corePanel" data-label="CORE_SYSTEM_STATUS">
+        <div class="panel" id="corePanel" data-label="CORE_IDENTITY_MATRIX">
             <div class="profile-grid">
                 <div class="stats-list">
-                    <p data-i18n="codename">⚡ CODENAME: <span>0s-a</span></p>
+                    <p data-i18n="status_edu">🎓 STATUS: <span>B.Sc. COMPUTER_SCIENCE (IN_PROGRESS)</span></p>
                     <p data-i18n="location">📍 LOCATION: <span>SANAA_NODE_YE</span></p>
-                    <p data-i18n="env">🛠️ CORE_ENV: <span>LINUX_DEBIAN</span></p>
-                    <p data-i18n="arch">🎯 ARCH: <span>ENTERPRISE_GRADE</span></p>
+                    <p data-i18n="goals">🎯 TARGET: <span>OPEN_SOURCE // RESEARCH // INTERNSHIPS</span></p>
+                    <p data-i18n="contact_sys">📫 PING: <span style="text-transform: lowercase;">hussamalrassas@gmail.com</span></p>
                 </div>
                 <div>
-                    <p style="line-height: 1.8; color: #b0b0c5;" data-i18n="bio">
-                        Executing full-stack architecture definitions. Focused on orchestrating automated workflows, designing resilient databases, and self-hosting highly scalable software infrastructures. Bridging the gap between dynamic reactive frontends and multi-staged backend pipelines.
+                    <p style="line-height: 1.8; color: #b0b0c5; margin-bottom: 20px;" data-i18n="bio">
+                        Passionate about building meaningful software. I enjoy solving complex problems, learning new technologies, and constructing tools that make life easier. Bridging the gap between foundational CS concepts and modern software engineering.
                     </p>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <span style="color: var(--neon-cyan); font-size: 0.9rem;" data-i18n="current_tech">>> CURRENTLY_EQUIPPED_TECH:</span>
+                        <div class="tech-tags">
+                            <span>Python</span><span>JavaScript</span><span>C++</span><span>Bash</span>
+                            <span>React</span><span>Node.js</span><span>MySQL</span><span>Linux</span><span>Git</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span style="color: var(--neon-magenta); font-size: 0.9rem;" data-i18n="learning_focus">>> UPGRADING_MODULES:</span>
+                        <div class="tech-tags learning-tags">
+                            <span data-i18n="tag_algo">Algorithms & DSA</span>
+                            <span data-i18n="tag_web">Web Dev & APIs</span>
+                            <span data-i18n="tag_devops">DevOps & Linux Admin</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -326,8 +233,9 @@
             </div>
         </div>
 
-        <div style="margin-top: 50px; text-align: center;">
+        <div class="action-bar">
             <a href="https://github.com/0s-a" target="_blank" class="cyber-btn" data-i18n="github_btn">INITIALIZE_GITHUB_HANDSHAKE_</a>
+            <a href="mailto:hussamalrassas@gmail.com" class="cyber-btn" style="border-color: var(--neon-magenta); color: var(--neon-magenta);" data-i18n="email_btn">EXECUTE_EMAIL_PROTOCOL_</a>
         </div>
     </div>
 
@@ -336,50 +244,54 @@
             en: {
                 logo: "://RASASS_MAIN_FRAME",
                 status: "● NODE_ONLINE // SECURE_SSL",
-                name: "HUSAM",
-                subtitle: "_FULL-STACK_ENGINEER // _DEVOPS_OPERATOR",
-                panel_label: "CORE_SYSTEM_STATUS",
-                codename: "⚡ CODENAME: <span>0s-a</span>",
+                name: "HUSAM AL-RSASS",
+                subtitle: "_CS_STUDENT // _SOFTWARE_BUILDER",
+                panel_label: "CORE_IDENTITY_MATRIX",
+                status_edu: "🎓 STATUS: <span>B.Sc. COMPUTER_SCIENCE (IN_PROGRESS)</span>",
                 location: "📍 LOCATION: <span>SANAA_NODE_YE</span>",
-                env: "🛠️ CORE_ENV: <span>LINUX_DEBIAN</span>",
-                arch: "🎯 ARCH: <span>ENTERPRISE_GRADE</span>",
-                bio: "Executing full-stack architecture definitions. Focused on orchestrating automated workflows, designing resilient databases, and self-hosting highly scalable software infrastructures. Bridging the gap between dynamic reactive frontends and multi-staged backend pipelines.",
+                goals: "🎯 TARGET: <span>OPEN_SOURCE // RESEARCH // INTERNSHIPS</span>",
+                contact_sys: "📫 PING: <span style='text-transform: lowercase;'>hussamalrassas@gmail.com</span>",
+                bio: "Passionate about building meaningful software. I enjoy solving complex problems, learning new technologies, and constructing tools that make life easier. Bridging the gap between foundational CS concepts and modern software engineering.",
+                current_tech: ">> CURRENTLY_EQUIPPED_TECH:",
+                learning_focus: ">> UPGRADING_MODULES:",
+                tag_algo: "Algorithms & DSA",
+                tag_web: "Web Dev & APIs",
+                tag_devops: "DevOps & Linux Admin",
                 matrix_title: "// PROJECT_DEPLOYMENTS_MATRIX",
-                p1_title: "01 // NAWAAT_CRM",
-                p2_title: "02 // DEBT_MANAGER",
-                p3_title: "03 // EDGE_PORTAL",
-                p4_title: "04 // LEGAL_SEARCH",
-                active: "[ACTIVE]",
-                stable: "[STABLE]",
+                p1_title: "01 // NAWAAT_CRM", p2_title: "02 // DEBT_MANAGER", p3_title: "03 // EDGE_PORTAL", p4_title: "04 // LEGAL_SEARCH",
+                active: "[ACTIVE]", stable: "[STABLE]",
                 p1_desc: "AI-driven CRM environment featuring comprehensive workflow automation nodes, reactive asset pipelines, and automated response structures.",
                 p2_desc: "A digitized credit ledger interface optimized for local merchant balance keeping, deprecating paper-bound transaction registries.",
                 p3_desc: "Real-time edge-rendered match metrics dashboard integrated directly into isolated captive hotspot infrastructure.",
                 p4_desc: "Full-text localized query indexing engine built for searching structured regional legislative data documentation.",
-                github_btn: "INITIALIZE_GITHUB_HANDSHAKE_"
+                github_btn: "INITIALIZE_GITHUB_HANDSHAKE_",
+                email_btn: "EXECUTE_EMAIL_PROTOCOL_"
             },
             ar: {
                 logo: "://إطار_رصاص_الرئيسي",
                 status: "● العقدة_متصلة // اتصال_آمن",
-                name: "حسام",
-                subtitle: "_مهندس_نظم_متكاملة // _مشغل_عمليات_التطوير",
-                panel_label: "حالة_النظام_الأساسي",
-                codename: "⚡ الاسم_الرمزي: <span dir='ltr'>0s-a</span>",
+                name: "حسام الرصاص",
+                subtitle: "_طالب_علوم_حاسوب // _مطور_برمجيات",
+                panel_label: "مصفوفة_الهوية_الأساسية",
+                status_edu: "🎓 الحالة: <span>بكالوريوس علوم حاسوب (قيد_الدراسة)</span>",
                 location: "📍 الموقع: <span>عقدة_صنعاء_اليمن</span>",
-                env: "🛠️ بيئة_النواة: <span>لينكس_ديبيان</span>",
-                arch: "🎯 المعمارية: <span>مستوى_المؤسسات</span>",
-                bio: "تنفيذ معماريات النظم المتكاملة. التركيز على أتمتة مسارات العمل، تصميم قواعد بيانات مرنة، والاستضافة الذاتية للبنى التحتية القابلة للتوسع. سد الفجوة بين الواجهات التفاعلية ومسارات المعالجة الخلفية متعددة المراحل.",
+                goals: "🎯 الهدف: <span>مشاريع_مفتوحة_المصدر // أبحاث // تدريب_مهني</span>",
+                contact_sys: "📫 اتصال: <span style='text-transform: lowercase;' dir='ltr'>hussamalrassas@gmail.com</span>",
+                bio: "شغوف ببناء برمجيات ذات قيمة. أستمتع بحل المشكلات المعقدة، تعلم تقنيات حديثة، وبناء أدوات تسهل الحياة اليومية. أعمل على سد الفجوة بين المفاهيم الأكاديمية لعلوم الحاسوب وهندسة البرمجيات الحديثة.",
+                current_tech: "<< تقنيات_مجهزة_حالياً:",
+                learning_focus: "<< ترقية_الوحدات_البرمجية:",
+                tag_algo: "الخوارزميات وهياكل البيانات",
+                tag_web: "تطوير الويب والـ APIs",
+                tag_devops: "أساسيات DevOps ولينكس",
                 matrix_title: "// مصفوفة_المشاريع_المنشورة",
-                p1_title: "01 // نواة_CRM",
-                p2_title: "02 // إدارة_الديون",
-                p3_title: "03 // بوابة_الحافة",
-                p4_title: "04 // البحث_القانوني",
-                active: "[نشط]",
-                stable: "[مستقر]",
+                p1_title: "01 // نواة_CRM", p2_title: "02 // إدارة_الديون", p3_title: "03 // بوابة_الحافة", p4_title: "04 // البحث_القانوني",
+                active: "[نشط]", stable: "[مستقر]",
                 p1_desc: "بيئة إدارة علاقات عملاء مدعومة بالذكاء الاصطناعي، تتميز بأتمتة سير العمل والاستجابة التلقائية للعملاء.",
                 p2_desc: "واجهة رقمية لإدارة السجلات المالية مصممة لتجار التجزئة، تستبدل السجلات الورقية التقليدية.",
                 p3_desc: "لوحة تحكم لحظية لعرض إحصائيات المباريات مدمجة مباشرة مع أنظمة شبكات (Hotspot) المعزولة.",
                 p4_desc: "محرك بحث مفهرس للنصوص الكاملة مصمم للبحث السريع داخل وثائق التشريعات الإقليمية المنظمة.",
-                github_btn: "بدء_مصافحة_جيت_هاب_"
+                github_btn: "بدء_مصافحة_جيت_هاب_",
+                email_btn: "تنفيذ_بروتوكول_الإيميل_"
             }
         };
 
@@ -387,31 +299,21 @@
 
         function toggleLanguage() {
             currentLang = currentLang === 'en' ? 'ar' : 'en';
-            
-            // تغيير اتجاه الصفحة
             document.documentElement.dir = currentLang === 'en' ? 'ltr' : 'rtl';
             document.documentElement.lang = currentLang;
-            
-            // تغيير زر التبديل
             document.getElementById('langBtn').innerText = currentLang === 'en' ? '[ AR ]' : '[ EN ]';
 
-            // تحديث النصوص
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
-                if(translations[currentLang][key]) {
-                    element.innerHTML = translations[currentLang][key];
-                }
+                if(translations[currentLang][key]) { element.innerHTML = translations[currentLang][key]; }
             });
 
-            // تحديث تأثير الغليتش للاسم
             const nameEl = document.getElementById('mainName');
             nameEl.setAttribute('data-text', translations[currentLang].name);
 
-            // تحديث عنوان اللوحة
             const panelEl = document.getElementById('corePanel');
             panelEl.setAttribute('data-label', translations[currentLang].panel_label);
         }
     </script>
-
 </body>
 </html>
